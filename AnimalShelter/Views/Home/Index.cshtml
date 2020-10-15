@@ -1,0 +1,17 @@
+@using System.Linq;
+@using System.Collections.Generic;
+@using Microsoft.AspNetCore.Mvc.Rendering;
+
+@{
+  Layout = "_Layout";
+}
+
+<h1>Welcome to the Animal Shelter</h1>
+
+@using (Html.BeginForm("Index", "Animals", FormMethod.Get))
+{
+  <h4>See all animals</h4>
+  <p>Order by:</p>
+  @Html.DropDownList("order", (List<SelectListItem>) @Model)
+  <input type="submit" name="button" value="Go!" />
+}

@@ -1,0 +1,24 @@
+@using System.Collections.Generic;
+@{
+  Layout = "_Layout";
+}
+
+@using AnimalShelter.Models;
+
+<h1>Animals</h1>
+@foreach (KeyValuePair<string, List<Animal>> kvp in Model)
+{
+  if (kvp.Value.Count == 0)
+  {
+    <h3>No animals have been added yet!</h3>
+  }
+
+  foreach (Animal animal in kvp.Value)
+  {
+    <li>@Html.ActionLink(animal.GetType().GetProperty(kvp.Key).GetValue(animal, null).ToString(), "Details", new { id =
+  animal.AnimalId})</li>
+  }
+}
+<br>
+<p>@Html.ActionLink("Back to main page", "Index", "Home")</p>
+@Html.ActionLink("Create an animal", "Create")
